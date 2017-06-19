@@ -5,6 +5,8 @@ RUN docker-php-source extract \
     && docker-php-ext-install mysqli \
     && docker-php-source delete
 
+WORKDIR /var/www/html
+
 ADD https://raw.githubusercontent.com/zf724/docker-php/master/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 

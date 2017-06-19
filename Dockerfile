@@ -1,4 +1,4 @@
-FROM docker.io/php:7.1.6
+FROM docker.io/php
 MAINTAINER PHP Docker Maintainers
 
 RUN docker-php-source extract \

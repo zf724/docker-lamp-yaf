@@ -2,7 +2,7 @@ FROM docker.io/php:5.6.30-apache
 MAINTAINER PHP Docker Maintainers
 
 RUN docker-php-source extract \
-    && docker-php-ext-install mysqli \
+    && docker-php-ext-install mysql mysqli \
     && docker-php-source delete
 
 WORKDIR /var/www/html

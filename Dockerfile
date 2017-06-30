@@ -10,4 +10,4 @@ WORKDIR /var/www/html
 #ADD https://raw.githubusercontent.com/zf724/docker-php/master/config/php.ini /usr/local/etc/php/
 
 VOLUME /var/www/html
-EXPOSE 8081
+EXPOSE 80

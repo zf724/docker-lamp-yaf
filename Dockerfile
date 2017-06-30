@@ -1,4 +1,4 @@
-FROM docker.io/php
+FROM docker.io/php:5.6.30-apache
 MAINTAINER PHP Docker Maintainers
 
 RUN docker-php-source extract \
@@ -7,10 +7,7 @@ RUN docker-php-source extract \
 
 WORKDIR /var/www/html
 
-ADD https://raw.githubusercontent.com/zf724/docker-php/master/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+#ADD https://raw.githubusercontent.com/zf724/docker-php/master/config/php.ini /usr/local/etc/php/
 
 VOLUME /var/www/html
-EXPOSE 80
-
-ENTRYPOINT ["/entrypoint.sh"]
+EXPOSE 8081

@@ -6,7 +6,7 @@ RUN docker-php-source extract \
     && docker-php-source delete
 
 RUN set -xe \
-    mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
+    && mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
 
 WORKDIR /var/www/html
 

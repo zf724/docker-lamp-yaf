@@ -5,9 +5,10 @@ RUN docker-php-source extract \
     && docker-php-ext-install mysql mysqli \
     && docker-php-source delete
 
-WORKDIR /var/www/html
+RUN set -xe \
+    mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
 
-#ADD https://raw.githubusercontent.com/zf724/docker-php/master/config/php.ini /usr/local/etc/php/
+WORKDIR /var/www/html
 
 VOLUME /var/www/html
 EXPOSE 80

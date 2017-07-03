@@ -1,0 +1,19 @@
+php:
+  image: daocloud.io/zf724/php:latest
+  volumes:
+    - /data/www/html/:/var/www/html
+  links:
+    - mysql
+  ports:
+    - 80:80
+  restart: always
+mysql:
+  image: index.docker.io/library/mysql:5.6.36
+  volumes:
+    - /data/mysql:/var/lib/mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=81C3f52e
+  ports:
+    - 3306:3306
+  restart: always
+

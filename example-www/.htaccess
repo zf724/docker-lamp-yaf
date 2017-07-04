@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+   RewriteEngine on
+
+   RewriteCond %{HTTP_HOST} ^web01\.zwise\.pw:8080$
+   RewriteCond %{REQUEST_URI} !^/web01/
+   RewriteRule ^(.*)$ /web01/$1 [L]
+
+   RewriteCond %{HTTP_HOST} ^web02\.zwise\.pw:8080$
+   RewriteCond %{REQUEST_URI} !^/web02/
+   RewriteRule ^(.*)$ /web02/$1 [L]
+
+</IfModule>

@@ -2,7 +2,7 @@ FROM docker.io/php:5.6.30-apache
 MAINTAINER PHP Docker Maintainers
 
 RUN docker-php-source extract \
-    && docker-php-ext-install mysql mysqli pdo\
+    && docker-php-ext-install mysql mysqli pdo pdo_mysql\
     && docker-php-source delete
 
 RUN set -xe \

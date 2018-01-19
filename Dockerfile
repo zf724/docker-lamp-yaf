@@ -1,6 +1,6 @@
 FROM php:5-apache
 MAINTAINER PHP Docker Maintainers
-
+#php default config
 RUN docker-php-source extract \
     && docker-php-ext-install mysql mysqli pdo pdo_mysql\
     && docker-php-source delete
@@ -8,6 +8,13 @@ RUN docker-php-source extract \
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
 
+RUN set -xe \
+    && mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
+
+COPY example-www/web01/l.php /var/www/html/l.php
+COPY example-www/web02/phpinfo.php /var/www/html/phpinfo.php
+
+#php yaf_demo config
 RUN curl -fsSL 'http://pecl.php.net/get/yaf-2.3.5.tgz' -o yaf.tgz \
     && mkdir -p yaf \
     && tar -xf yaf.tgz -C yaf --strip-components=1 \
@@ -22,11 +29,8 @@ RUN curl -fsSL 'http://pecl.php.net/get/yaf-2.3.5.tgz' -o yaf.tgz \
     && rm -r yaf \
     && docker-php-ext-enable yaf
 
-RUN set -xe \
-    && mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
-
-COPY example-www/web01/l.php /var/www/html/l.php
-COPY example-www/web02/phpinfo.php /var/www/html/phpinfo.php
+COPY yaf_config/web.conf /etc/apache2/sites-enabled/web.conf
+COPY yaf_config/docker-php-ext-yaf.ini /usr/local/etc/php/conf.d/docker-php-ext-yaf.ini
 
 WORKDIR /var/www/html
 

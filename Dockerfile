@@ -5,9 +5,8 @@ RUN docker-php-source extract \
     && docker-php-ext-install mysql mysqli pdo pdo_mysql\
     && docker-php-source delete
 
-#RUN pecl install redis \
-#    && pecl install xdebug \
-#    && docker-php-ext-enable redis xdebug
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
 
 RUN curl -fsSL 'http://pecl.php.net/get/yaf-2.3.5.tgz' -o yaf.tgz \
     && mkdir -p yaf \

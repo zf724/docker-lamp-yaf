@@ -1,4 +1,4 @@
-FROM docker.io/php:5.6.30-apache
+FROM php:5-apache
 MAINTAINER PHP Docker Maintainers
 
 RUN docker-php-source extract \

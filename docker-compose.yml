@@ -1,0 +1,22 @@
+version: '2'
+services:
+    mysql:
+      image: mysql:5
+      environment:
+        - MYSQL_ROOT_PASSWORD=root
+      volumes:
+        - db:/var/lib/mysql
+      ports:
+        - 3306:3306
+    php:
+      build:
+        context: .
+      volumes:
+        - www:/var/www/html
+      depends_on:
+        - mysql
+      ports:
+      - 80:80
+volumes:
+    db:
+    www:

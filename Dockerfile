@@ -1,8 +1,15 @@
 FROM php:5-apache
 MAINTAINER PHP Docker Maintainers
 #php default config
-RUN docker-php-source extract \
-    && docker-php-ext-install mysql mysqli pdo pdo_mysql\
+RUN apt-get update && apt-get install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libmcrypt-dev \
+        libpng-dev \
+    && docker-php-source extract \
+    && docker-php-ext-install -j$(nproc) mysql mysqli pdo_mysql iconv mcrypt \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install -j$(nproc) gd \
     && docker-php-source delete
 
 RUN pecl install xdebug \

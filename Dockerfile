@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-source delete
 
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug
+#RUN pecl install xdebug \
+#    && docker-php-ext-enable xdebug
 
 RUN set -xe \
     && mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
